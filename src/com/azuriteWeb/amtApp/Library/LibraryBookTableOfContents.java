@@ -135,7 +135,15 @@ public class LibraryBookTableOfContents extends ExpandableListActivity{
 		List<TOCReference> tocReferences = book.getTableOfContents().getTocReferences();
 		Iterator<TOCReference> tocReference = tocReferences.iterator();
 		while (tocReference.hasNext()) {
+			
+			//make our container of results
 			ArrayList<HashMap<String, String>> secList = new ArrayList<HashMap<String, String>>();
+			
+			//add the default 'Whole Chapter'
+			HashMap<String, String> firstChild = new HashMap<String, String>();
+			firstChild.put("subChapters", "Whole Chapter");
+			secList.add(firstChild);
+			
 			TOCReference ourRef = tocReference.next();
 			List<TOCReference> childrenList = ourRef.getChildren();
 			Iterator<TOCReference> children = childrenList.iterator();

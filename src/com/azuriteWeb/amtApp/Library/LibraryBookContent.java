@@ -94,8 +94,11 @@ public class LibraryBookContent extends Activity{
 					String data = new String(book.getContents().get(chapterID).getData());
 					String dump = new String();
 					
-					//if it's not 'wholeChapter', we've gotta split up the string
-					if(!wholeChapter){
+					//if it's not 'whole chapter', we've gotta split up the string
+					if(headingID != 0){
+						
+						//adjust for 'whole chapter'
+						headingID = headingID - 1;
 						
 						//parse the data
 						Document doc = Jsoup.parse(data);
