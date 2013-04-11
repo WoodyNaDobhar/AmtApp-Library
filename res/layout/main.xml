@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/linearLayout"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<com.azuriteWeb.amtApp.Library.MyGrid
+		android:id="@+id/MyGrid"
+		android:layout_width="fill_parent"
+		android:layout_height="0px" 
+		android:layout_weight="1"
+		android:verticalSpacing="5dp"
+		android:horizontalSpacing="20dp"
+		android:numColumns="auto_fit"
+		android:columnWidth="60dp"
+		android:stretchMode="columnWidth"
+		android:gravity="center_horizontal"/>
+</LinearLayout>

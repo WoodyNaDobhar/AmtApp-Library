@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+	<string name="app_name">AmtApp Library</string>
+	<string name="sd_files_directory">/Android/data/com.azuriteWeb.amtApp.Library/files/data/</string>
+	<string name="files">books/</string>
+	<string name="images">covers/</string>
+	<string name="library_listing_addy">http://amtapp.midgardonline.org/data/listing.php</string>
+	<string name="library_addy">http://amtapp.midgardonline.org/data/</string>
+	<string name="sd_not_found">A mountable storage directory (usually an SD card) was not found on this device. This is required to download and browse the Amtgard Library.</string>
+	<string name="yes">Yup!</string>
+	<string name="no">No thanks.</string>
+	<string name="ok">Gotcha</string>
+	<string name="failed">\u0020failed.  Please try again.</string>
+	<string name="get_new_content_title">Get New Content?</string>
+	<string name="get_new_content">New Library content has been detected.  Would you like to download it now?</string>
+	<string name="fetching_file">Fetching file\u0020</string>
+	<string name="finish_fetch_file">Finished getting file\u0020</string>
+	<string name="confirm_open">Open the following file?\n</string>
+	
+	<string name="loading_book">Loading your selected book...</string>
+	
+	<string name="no_book_found">Somehow you got here without a book selected.  That should not be.  Go back and try again.</string>
+	<string name="no_contents">Something\'s wrong with this eBook.  You should refresh your data, just in case.</string>
+	<string name="library_shelves">Amtgard Library</string>
+	
+	<string name="update_library">Update Library</string>
+	<string name="update_library_msg">Getting Library\r\nThis will take a few minutes.</string>
+	
+	<string name="title">Title</string>
+</resources>
