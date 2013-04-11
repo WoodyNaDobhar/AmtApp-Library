@@ -179,8 +179,9 @@ public class UpdateLibrary extends Activity{
 				File fileToCheck = new File(Environment.getExternalStorageDirectory().toString()+getString(R.string.sd_files_directory)+getString(R.string.files)+fileDirectory+"/"+fileName);
 				
 				if(fileToCheck.isFile()){
+					int fileSize = (int) fileToCheck.length();
 					//if so, and the size isn't the same, nuke it
-					if(fileToCheck.length() != totalSize){
+					if(fileSize != totalSize){
 						fileToCheck.delete();
 					}else{
 						//already got this one, move along
