@@ -179,7 +179,6 @@ public class LibraryBookTableOfContents extends ExpandableListActivity{
 		readIntent.putExtra("filePath", filePath);
 		readIntent.putExtra("chapterID", groupPosition);
 		readIntent.putExtra("headingID", childPosition);
-//		readIntent.putExtra("wholeChapter", true);
 		LibraryBookTableOfContents.this.startActivity(readIntent);
 		return true;
 	}
