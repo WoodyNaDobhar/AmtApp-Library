@@ -15,5 +15,6 @@
 	<classpathentry kind="lib" path="C:/Users/Woody.MININT-HUBD84F/Documents/workspace/AmtAppLibrary/libs/slf4j-android-1.6.1-RC1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Woody.MININT-HUBD84F/Documents/workspace/AmtAppLibrary/libs/GoogleAdMobAdsSdk-6.2.1.jar"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

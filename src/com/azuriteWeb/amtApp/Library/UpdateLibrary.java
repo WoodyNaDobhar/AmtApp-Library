@@ -21,6 +21,9 @@ import org.w3c.dom.NodeList;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -35,9 +38,6 @@ public class UpdateLibrary extends Activity{
 	int numFiles = 0;
 	int numComplete = 0;
 	int numFailed = 0;
-	
-	//methods adapter
-	ApplicationMethods AM;
 	
 	@Override
 	protected void onSaveInstanceState(Bundle outState){
@@ -56,11 +56,8 @@ public class UpdateLibrary extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.update_library);
 		
-		//app methods
-		AM = new ApplicationMethods(this);
-		
-		//if we have someplace to put it, get to it
-		if(android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)){
+		//if we have someplace to put it, and we're online, get to it
+		if(isOnline() && android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)){
 			
 			//progress bar
 			showDialog(ID_DIALOG_UPDATE);
@@ -94,34 +91,6 @@ public class UpdateLibrary extends Activity{
  					e2.printStackTrace();
  				}
 			}
-			
-			
-//			NodeList fileNodes =(NodeList) doc.getElementsByTagName("file");
-//			Node child;
-//			if(fileNodes.item(0) != null){
-//				if (fileNodes.item(0).hasChildNodes()){
-//					for(child = fileNodes.item(0).getFirstChild(); child != null; child = child.getNextSibling()){
-//						if(child.getNodeType() == Node.TEXT_NODE){
-//			 				//this is the file to be downloaded
-//			 				try {
-//			 					
-//			 					//update our number of files
-//			 					numFiles++;
-//			 					
-//			 					//the URL to the file
-//			 					URL url = new URL(getString(R.string.library_addy)+child.getNodeValue());
-//
-//			 					//do the work
-//			 					new getFile("",child.getNodeValue()).execute(url);
-//			 				}catch(MalformedURLException e2){
-//			 					Log.e("Bad URL Error:", ""+e2);
-//			 					numFiles--;
-//			 					e2.printStackTrace();
-//			 				}
-//						}
-//					}
-//				}
-//			}
 		}
 	}
 	
@@ -284,6 +253,16 @@ public class UpdateLibrary extends Activity{
 			return progressDialog;
 		default:
 			return null;
+		}
+	}
+	
+	public boolean isOnline(){
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo ni = cm.getActiveNetworkInfo();
+		if(ni!=null && ni.isAvailable() && ni.isConnected()){
+			return true;
+		}else{
+			return false; 
 		}
 	}
 }

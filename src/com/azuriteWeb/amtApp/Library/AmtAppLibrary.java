@@ -61,12 +61,15 @@ public class AmtAppLibrary extends Activity{
 	private static final int DIALOG_SD_NOT_FOUND = 2;
 	private AdView adView;
 	String currentDate = (String) DateFormat.format("yyyy-MM-dd", new Date());
-	
+
 	//methods adapter
 	ApplicationMethods AM;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
+		
+		//app methods
+		AM = new ApplicationMethods(this);
 
 		//if there's an old data folder (an old holdover), nuke it
 		/* TODO: nuke this before release to market */
@@ -104,9 +107,6 @@ public class AmtAppLibrary extends Activity{
 		MyGrid = (GridView)findViewById(R.id.MyGrid);
 		MyGrid.setAdapter(new ImageAdapter(this));
 		
-		//app methods
-		AM = new ApplicationMethods(this);
-		
 		//make sure there's mounted media to stick it in
 		if(!android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)){
 
@@ -117,17 +117,15 @@ public class AmtAppLibrary extends Activity{
 			//only do this if you haven't today
 			if(!lastUpdate.equals(currentDate)){
 				//if it's online, check to see if there's new content
-				ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-				NetworkInfo ni = cm.getActiveNetworkInfo();
-				if(ni!=null && ni.isAvailable() && ni.isConnected()){
+				if(isOnline()){
 					if(AM.checkNewContent() == true){
 						//ask 'em if they wanna go get the new content
 						showDialog(DIALOG_GET_NEW_CONENT);
 					}
+					SharedPreferences.Editor editor = settings.edit();
+					editor.putString("lastUpdate", currentDate);
+					editor.commit();
 				}
-				SharedPreferences.Editor editor = settings.edit();
-				editor.putString("lastUpdate", currentDate);
-				editor.commit();
 			}
 			
 			//set our directories
@@ -406,5 +404,15 @@ public class AmtAppLibrary extends Activity{
 			.create();
 		}
 		return null;
+	}
+	
+	public boolean isOnline(){
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo ni = cm.getActiveNetworkInfo();
+		if(ni!=null && ni.isAvailable() && ni.isConnected()){
+			return true;
+		}else{
+			return false; 
+		}
 	}
 }
